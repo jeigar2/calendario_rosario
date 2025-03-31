@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>Calendario</title>
+</head>
+<body>
+    <div class="header">
+        <h3>Calendario</h3>
+        <div class="user-info">
+            <span id="user-name">{{ user_name }}</span> <span id="name-list"></span>
+            <button id="prev-month" onclick="changeMonth(-1)">Mes Anterior</button>
+            <button id="next-month" onclick="changeMonth(1)">Mes Siguiente</button>
+            <button id="add-name-button" onclick="add_name()">Añadir Nombre</button>
+        </div>
+    </div>
+    <div class="main-content">
+        <div class="calendar-grid">
+            <div class="month_name">{{ month_name }}</div> <!-- Display month name above the grid -->
+            <table>
+                <thead>
+                    <tr>
+                        <th>Dom</th>
+                        <th>Lun</th>
+                        <th>Mar</th>
+                        <th>Mié</th>
+                        <th>Jue</th>
+                        <th>Vie</th>
+                        <th>Sáb</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for week in calendar %}
+                    <tr>
+                        {% for day in week %}
+                        {% if day != 0 %}
+                        {% set day_of_week = loop.index0 % 7 %}
+                        <td class="day {% if day_of_week == 5 or day_of_week == 6 %}weekend{% endif %}" data-day="{{ day }}">
+                            {{ day }}
+                        </td>
+                        {% else %}
+                        <td class="day"></td>
+                        {% endif %}
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="day-info">
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>
+                            <div>Días Seleccionados - {{ month_name }}</div> <!-- Display month name above the day list -->
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for week in calendar %}
+                        {% for day in week %}
+                        {% if day != 0 %}
+                        {% set day_of_week = loop.index0 % 7 %}
+                    <tr>
+                        <td class="day_col {% if day_of_week == 5 or day_of_week == 6 %}weekend_col{% endif %}" data-day="{{ day }}">
+                            {{ day }}
+                        </td>
+                        {% endif %}
+                    </tr>
+                        {% endfor %}
+                    {% endfor %}
+                </tbody>
+            </table>
+
+
+            <ul id="selected-days">
+                <!-- Aquí se mostrarán los días seleccionados -->
+            </ul>
+        </div>
+    </div>
+    <script>
+        function changeMonth(delta) {
+            let currentMonth = {{ month }};
+            let currentYear = {{ year }};
+
+            let newMonth = currentMonth + delta;
+            let newYear = currentYear;
+
+            if (newMonth > 12) {
+                newMonth = 1;
+                newYear++;
+            } else if (newMonth < 1) {
+                newMonth = 12;
+                newYear--;
+            }
+
+            window.location.href = `/?month=${newMonth}&year=${newYear}`;
+        }
+        window.onload = function() {
+            let name = document.getElementById("user-name").innerText;
+            if (name === "None") {
+                let name = prompt("Por favor, introduce tu nombre:");
+                if (name) {
+                    // Redirect to a route that handles saving the name
+                    window.location.href = `/set_name?name=${name}`;
+                }
+            }
+        };
+    </script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>Calendar App</title>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Welcome to the Calendar App</h1>
+            <form id="nameForm">
+                <input type="text" id="nameInput" placeholder="Enter your name" required>
+                <button type="submit">Submit</button>
+            </form>
+            <div id="existingNames">
+                <!-- Existing names will be displayed here -->
+            </div>
+        </div>
+        <div class="calendar-section">
+            <h2>Select a name to view the calendar</h2>
+            <div id="calendarLink">
+                <a href="/calendar">Go to Calendar</a>
+            </div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

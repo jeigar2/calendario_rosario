@@ -1,0 +1,159 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    background-color: #f0f0f0;
+    padding: 10px;
+    text-align: center;
+}
+
+.main-content {
+    display: flex; /* Use flexbox to arrange the calendar and day info side by side */
+    height: 80vh; /* Set a height for the main content */
+}
+
+.calendar-grid {
+    width: 70%; /* Calendar grid takes up 70% */
+    padding: 20px;
+}
+
+.day-info {
+    width: 30%; /* Day info takes up 30% */
+    padding: 20px;
+    border-left: 1px solid #ccc; /* Add a separator line */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: center;
+}
+
+th {
+    background-color: #eee;
+}
+
+.day {
+    cursor: pointer;
+}
+
+.weekend {
+    background-color: #f9f9f9;
+}
+
+#selected-days {
+    list-style: none;
+    padding: 0;
+}
+
+#selected-days li {
+    padding: 5px;
+    border-bottom: 1px dotted #ccc;
+}
+
+.container {
+    display: flex;
+    height: 80%;
+}
+
+.calendar {
+    flex: 80%;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+    padding: 10px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.month_name {
+    grid-column: span 7;
+    text-align: center;
+    font-size: 20px;
+    margin-bottom: 5px;
+    background-color: #d4d4d4;
+    text-transform: uppercase;
+}
+
+.day {
+    padding: 20px;
+    text-align: center;
+    background-color: #e7e7e7;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.day:hover {
+    background-color: #d4d4d4;
+}
+
+.day_col {
+    padding: 2px;
+    text-align: left;
+    background-color: #e7e7e7;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.day_col:hover {
+    background-color: #d4d4d4;
+}
+
+
+.selected {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.weekend, .weekend_col {
+    background-color: #f0f0f0; /* Light gray background */
+    color: red; /* Optional: Change the text color */
+}
+
+.sidebar {
+    flex: 20%;
+    padding: 10px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar h3 {
+    text-align: center;
+}
+
+.sidebar p {
+    text-align: center;
+    margin: 10px 0;
+}
+
+.button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.button:hover {
+    background-color: #45a049;
+}
+
+.message {
+    text-align: center;
+    margin-top: 20px;
+    color: #333;
+}
